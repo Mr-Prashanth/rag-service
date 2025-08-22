@@ -90,7 +90,7 @@ async def delete_chat_endpoint(
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/search-chat")
-async def search_chat_endpoint(query: str, chat_id: str, score_threshold: float = 0.5):
+async def search_chat_endpoint(query: str, chat_id: str, score_threshold: float = 0.01):
     try:
         raw_results =  search_chat_auto(query, chat_id)
         hits = raw_results.get("result", {}).get("hits", [])
